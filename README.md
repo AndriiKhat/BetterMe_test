@@ -18,7 +18,7 @@ with body:
   "phone": "+380660000001",
   "userStatus": 1
 }
-ER: 201 Created 
+ER: 201 Created. 
 1.2 Go to {DB_name} DB > {env} > Collection {name} and find record with "username":"test_name_1".
 ER: Recodr is presented with body:
 {

@@ -119,4 +119,4 @@ ER: 404 User not found
 2.3 Open Postman and send request:
 	GET {{petstore_host}}/user/{username}
  "username": "."
-ER: 400 Invalid username supplied
+ER: 400 Invalid username supplied.

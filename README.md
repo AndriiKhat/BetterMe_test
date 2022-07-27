@@ -5,6 +5,7 @@ Username: {Username_Auth}
 Password: {Password_Auth}
 
 TC_1: Verify "POST petstore_host/user" endpoint 
+
 1.1 Open Postman and send request:
 	POST {{petstore_host}}/user 
 with body:
@@ -18,7 +19,8 @@ with body:
   "phone": "+380660000001",
   "userStatus": 1
 }
-ER: 201 Created 
+ER: 201 Created.
+
 1.2 Go to {DB_name} DB > {env} > Collection {name} and find record with "username":"test_name_1".
 ER: Recodr is presented with body:
 {
@@ -31,6 +33,7 @@ ER: Recodr is presented with body:
   "phone": "+380660000001",
   "userStatus": 1
 }
+
 1.3 Open Postman and send request:
 	POST {{petstore_host}}/user 
 with body:
@@ -44,9 +47,11 @@ with body:
   "phone": "+380660000002",
   "userStatus": 1
 }
-ER: 40X error code
+ER: 40X error code.
+
 1.4 Go to {DB_name} DB > {env} > Collection {name} and find record with "username":"test_name_2".
 ER: Record is not presented.
+
 1.5 Open Postman and send request:
 	POST {{petstore_host}}/user 
 with body:
@@ -60,9 +65,11 @@ with body:
   "phone": "+380660000002",
   "userStatus": 1
 }
-ER: 40X error code
+ER: 40X error code.
+
 1.6 Go to {DB_name} DB > {env} > Collection {name} and find record with "username":"test_name_1" and "id":00002.
 ER: Record is not presented.
+
 1.7 Open Postman and send request:
 	POST {{petstore_host}}/user 
 with body:
@@ -79,6 +86,7 @@ with body:
 ER: 40X error code
 1.8 Go to {DB_name} DB > {env} > Collection {name} and find record with "username":"test_name_3" and "id":00003.
 ER: Record is not presented.
+
 1.9 Open Postman and send request:
 	POST {{petstore_host}}/user 
 with body:
@@ -93,11 +101,13 @@ with body:
   "userStatus": 1
 }
 ER: 40X error code
+
 1.10 Go to {DB_name} DB > {env} > Collection {name} and find record with "username":"test_name_4" and "id":00004.
 ER: Record is not presented.
 
 
 TC_2: Verify "GET petstore_host/user/{username}" endpoint 
+
 2.1 Open Postman and send request:
 	GET {{petstore_host}}/user/{username}
  "username": "test_name_1"
@@ -112,10 +122,12 @@ ER: 200 and in body responce is presented:
   "phone": "+380660000002",
   "userStatus": 1
 }
+
 2.2 Open Postman and send request:
 	GET {{petstore_host}}/user/{username}
  "username": "test_name_999"
 ER: 404 User not found
+
 2.3 Open Postman and send request:
 	GET {{petstore_host}}/user/{username}
  "username": "."

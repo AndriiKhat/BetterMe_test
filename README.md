@@ -115,7 +115,7 @@ ER: 200 and in body responce is presented:
 2.2 Open Postman and send request:
     GET {{petstore_host}}/user/{username}
  "username": "test_name_999"
-ER: 404 User not found
+ER: 404 User not found.
 2.3 Open Postman and send request:
     GET {{petstore_host}}/user/{username}
  "username": "."

@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "bd30561a-1b6a-4571-9394-bea631fbf964",
+		"name": "BetterMe_Khatsko_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22382500"
+	},
+	"item": [
+		{
+			"name": "POST User",
+			"item": [
+				{
+					"name": "POST User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 OK\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{$randomInt}},\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"email\": \"{{$randomExampleEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"{{$randomPhoneNumber}}\",\r\n    \"userStatus\": {{$randomInt}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{petstore_host}}/user",
+							"host": [
+								"{{petstore_host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET User",
+			"item": [
+				{
+					"name": "POST User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.headers.add({\r",
+									"key: 'Content-Type',\r",
+									"value: 'application/json'\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"url: '{{petstore_host}}/user/',\r",
+									"method: 'POST',\r",
+									"headers: {\"Content-Type\": \"application/json\"},\r",
+									"body: { \r",
+									"    mode: 'raw',\r",
+									"    raw:JSON.stringify({\r",
+									"    \"id\": \"{{$randomInt}}\",\r",
+									"    \"username\": \"{{$randomUserName}}\",\r",
+									"    \"firstName\": \"{{$randomFirstName}}\",\r",
+									"    \"lastName\": \"{{$randomLastName}}\",\r",
+									"    \"email\": \"{{$randomExampleEmail}}\",\r",
+									"    \"password\": \"{{$randomPassword}}\",\r",
+									"    \"phone\": \"{{$randomPhoneNumber}}\",\r",
+									"    \"userStatus\": \"{{$randomInt}}\"\r",
+									"})\r",
+									"\r",
+									"function (err, response) {  console.log(\"User is created\" + response.json());  });"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 and all field is presented\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"       const responseJson = pm.response.json();\r",
+									"      pm.expect(responseJson.id).to.be.a('number');\r",
+									"      pm.expect(responseJson.username).to.be.a('string');\r",
+									"      pm.expect(responseJson.firstName).to.be.a('string');\r",
+									"      pm.expect(responseJson.lastName).to.be.a('string');\r",
+									"      pm.expect(responseJson.email).to.be.a('string');\r",
+									"      pm.expect(responseJson.password).to.be.a('string');\r",
+									"      pm.expect(responseJson.phone).to.be.a('string');\r",
+									"      pm.expect(responseJson.userStatus).to.be.a('number');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{$randomInt}},\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"email\": \"{{$randomExampleEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"{{$randomPhoneNumber}}\",\r\n    \"userStatus\": {{$randomInt}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{petstore_host}}/user/{{username}}",
+							"host": [
+								"{{petstore_host}}"
+							],
+							"path": [
+								"user",
+								"{{username}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
